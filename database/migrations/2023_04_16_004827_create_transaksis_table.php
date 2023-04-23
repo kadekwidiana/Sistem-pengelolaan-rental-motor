@@ -26,6 +26,7 @@ return new class extends Migration
             $table->integer('total');
             $table->string('km_awal', 10);
             $table->string('km_akhir', 10);
+            $table->string('jumlah_helm', 2);
             $table->text('catatan')->nullable();
             $table->timestamps();
         });

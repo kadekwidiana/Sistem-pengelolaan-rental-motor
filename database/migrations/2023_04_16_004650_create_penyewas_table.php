@@ -18,6 +18,10 @@ return new class extends Migration
             $table->string('nama_penyewa', 100);
             $table->string('email', 100);
             $table->string('asal_negara', 50);
+            $table->string('jenis_kelamin', 10);
+            $table->string('domisili', 100);
+            $table->string('no_telepon', 15);
+            $table->string('no_sim', 20);
             $table->timestamps();
         });
     }

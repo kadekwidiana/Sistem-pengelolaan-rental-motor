@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Dashboard</title>
+        <title>Dashboard | {{ $title }}</title>
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
         <link href="{{ asset('css/styles.css') }}" rel="stylesheet" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
@@ -20,7 +20,7 @@
             <div id="layoutSidenav_content">
                 <main>
                     <div class="px-4 container-fluid">
-                        <h1 class="mt-4 mb-4">Transaksi</h1>
+                        <h2 class="mt-4 mb-4">{{ $title }}</h2>
                         @if (session()->has('success'))
                             <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
                                 <symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
@@ -46,8 +46,10 @@
         <script src="{{ asset('assets/demo/chart-bar-demo.js') }}"></script>
         <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
         <script src="{{ asset('js/datatables-simple-demo.js') }}"></script>
+        
         @livewireScripts
     </body>
+    
     <script src="https://www.bacancytechnology.com/blog/wp-content/cache/min/1/b810c1e775732c06a03141e7fcdf81a0.js" data-minify="1" defer></script>
     @stack('script')
 </html>

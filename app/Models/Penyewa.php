@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Transaksi;
 
 class Penyewa extends Model
 {
@@ -18,7 +19,11 @@ class Penyewa extends Model
         'no_paspor',
         'nama_penyewa',
         'email',
-        'asal_negara'
+        'asal_negara',
+        'jenis_kelamin',
+        'domisili',
+        'no_telepon',
+        'no_sim'
     ];
 
     public function transaksi()

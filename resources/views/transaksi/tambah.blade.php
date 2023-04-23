@@ -1,94 +1,28 @@
 @extends('layouts.main')
 
 @section('content')
-
-<form method="POST" action="{{ route('transaksi.pengembalian', $transaksi->kode_transaksi) }}">
+<form method="POST" action="{{ route('transaksi.tambah') }}">
     @csrf
-    @method('POST')
-    <div class="border p-3 rounded">
-        <div class="form-group mt-2">
-            <label for="no_paspor">No Paspor</label>
-            <input type="text" class="form-control no_paspor_input @error('no_paspor') is-invalid @enderror" id="no_paspor_input" name="no_paspor" value="{{ $transaksi->penyewa->no_paspor }}" placeholder="Masukan no paspor" required>
+    {{-- input jika data penyewa sudah ada --}}
+    <div class="border p-3 rounded mt-3">
+        <div class="form-group">
+            <label for="no_paspor">Nama Penyewa</label>
+            <select name="no_paspor" id="no_paspor" class="form-control @error('no_paspor') is-invalid @enderror">
+                <option value="">--Pilih penyewa--</option>
+                @foreach ($penyewas as $penyewa)
+                    <option value="{{ $penyewa->no_paspor }}">{{ $penyewa->nama_penyewa }} ({{ $penyewa->no_paspor }})</option>
+                @endforeach
+            </select>
             @error('no_paspor')
                 <div class="invalid-feedback">{{ $message }}</div>
             @enderror
         </div>
-        <div class="form-group mt-2">
-            <label for="nama_penyewa">Nama Penyewa</label>
-            <input type="text" class="form-control @error('nama_penyewa') is-invalid @enderror" id="nama_penyewa" name="nama_penyewa" value="{{ $transaksi->penyewa->nama_penyewa }}" placeholder="Masukan nama penyewa" required>
-            @error('nama_penyewa')
-                <div class="invalid-feedback">{{ $message }}</div>
-            @enderror
-        </div>
-        <div class="form-group mt-2">
-            <label for="">Jenis Kelamin</label>
-            <div>
-                <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="jenis_kelamin" id="jenis_kelamin" value="Laki-laki" {{ $transaksi->penyewa->jenis_kelamin == 'Laki-laki' ? 'checked' : '' }}>
-                <label class="form-check-label" for="jenis_kelamin">Laki-laki</label>
-              </div>
-              <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="jenis_kelamin" id="jenis_kelamin" value="Perempuan" {{ $transaksi->penyewa->jenis_kelamin == 'Perempuan' ? 'checked' : '' }}>
-                <label class="form-check-label" for="jenis_kelamin">Perempuan</label>
-              </div>
-            </div>
-            @error('jenis_kelamin')
-                <div class="invalid-feedback">{{ $message }}</div>
-            @enderror
-        </div>
-        <div class="form-group mt-2">
-            <label for="asal_negara">Asal Negara</label>
-            <input type="text" class="form-control @error('asal_negara') is-invalid @enderror" id="asal_negara" name="asal_negara" value="{{ $transaksi->penyewa->asal_negara }}" placeholder="Masukan asal negara" required>
-            @error('asal_negara')
-                <div class="invalid-feedback">{{ $message }}</div>
-            @enderror
-        </div>
-        <div class="form-group mt-2">
-            <label for="domisili">Alamat Domisili</label>
-            <input type="text" class="form-control @error('domisili') is-invalid @enderror" id="domisili" name="domisili" value="{{ $transaksi->penyewa->domisili }}" placeholder="Masukan tempat tinggal saat ini" required>
-            @error('domisili')
-                <div class="invalid-feedback">{{ $message }}</div>
-            @enderror
-        </div>
-        <div class="row mt-2">
-            <div class="col-md-6">
-                <label for="email">Email</label>
-                <input type="text" class="form-control @error('email') is-invalid @enderror" id="email" name="email" value="{{ $transaksi->penyewa->email }}" placeholder="Email penyewa" required>
-                @error('email')
-                    <div class="invalid-feedback">{{ $message }}</div>
-                @enderror
-            </div>
-            
-            <div class="col-md-6">
-                <label for="no_telepon">No Handphone</label>
-                <input type="text" class="form-control @error('no_telepon') is-invalid @enderror" id="no_telepon" name="no_telepon" value="{{ $transaksi->penyewa->no_telepon }}" placeholder="No Telepon" required>
-                @error('no_telepon')
-                    <div class="invalid-feedback">{{ $message }}</div>
-                @enderror
-            </div>
-        </div>
-        <div class="form-group mt-2">
-            <label for="no_sim">No Sim</label>
-            <input type="text" class="form-control @error('no_sim') is-invalid @enderror" id="no_sim" name="no_sim" value="{{ $transaksi->penyewa->no_sim }}" placeholder="Masukan Nomor Sim" required>
-            @error('no_sim')
-                <div class="invalid-feedback">{{ $message }}</div>
-            @enderror
-        </div>
     </div>
-    {{-- untuk mengisi no_paspor yang di dapatkan dari no_paspor penyewa --}}
-    <div class="form-group mt-2 d-none">
-        <label for="no_paspor">No Paspor</label>
-        <input type="text" name="no_paspor" id="no_paspor_value" class="form-control no_paspor_value" value="{{ $transaksi->penyewa->no_paspor }}">
-        @error('no_paspor')
-            <div class="invalid-feedback">{{ $message }}</div>
-        @enderror
-    </div>
-
-    {{-- Input Transaksi --}}
-    <div class="border p-3 rounded mt-3">
+   
+    <div class="border p-3 rounded mt-2">
         <div class="form-group mt-2">
             <label for="kode_transaksi">Kode Transaksi</label>
-            <input type="text" class="form-control @error('kode_transaksi') is-invalid @enderror" id="kode_transaksi" name="kode_transaksi" value="{{ $transaksi->kode_transaksi }}" required readonly>
+            <input type="text" class="form-control @error('kode_transaksi') is-invalid @enderror" id="kode_transaksi" name="kode_transaksi" value="{{ old('kode_transaksi') }}" required readonly>
             @error('kode_transaksi')
                 <div class="invalid-feedback">{{ $message }}</div>
             @enderror
@@ -100,7 +34,11 @@
                 <select name="plat_motor" id="plat_motor" class="form-control @error('plat_motor') is-invalid @enderror">
                         <option value="">--Pilih Motor--</option>
                     @foreach ($motors as $motor)
-                            <option value="{{ $motor->plat_motor }}" data-harga="{{ $motor->harga_sewa }}" {{ (old('plat_motor', $motor->plat_motor) == $motor->plat_motor ? 'selected' : '') }}>{{ $motor->nama_motor }}  ( {{ $motor->plat_motor }} )</option>
+                        @if ($motor->status == 'tersedia' || $motor->status == 1)
+                            <option value="{{ $motor->plat_motor }}" data-harga="{{ $motor->harga_sewa }}" @if (old('plat_motor') == $motor->plat_motor)
+                                selected
+                            @endif>{{ $motor->nama_motor }}  ( {{ $motor->plat_motor }} )</option>
+                        @endif
                     @endforeach
                 </select>
                 @error('plat_motor')
@@ -111,7 +49,7 @@
                 <label for="harga_sewa">Harga Sewa</label>
                 <div class="input-group">
                     <span class="input-group-text">Rp.</span>
-                    <input type="text" name="harga_sewa" id="harga_sewa" class="form-control" readonly placeholder="Harga sewa motor/hari" value="{{ $transaksi->motor->harga_sewa }}">
+                    <input type="text" name="harga_sewa" id="harga_sewa" class="form-control" readonly value="{{ old('harga_sewa') }}" placeholder="Harga sewa motor/hari">
                 </div>
             </div>
         </div>
@@ -154,15 +92,15 @@
         {{-- Tanggal sewa --}}
         <div class="row mt-2">
             <div class="col-md-6">
-            <label for="tgl_mulai">Tanggal mulai sewa</label>
-            <input type="date" class="form-control @error('tgl_mulai') is-invalid @enderror" id="tgl_mulai" name="tgl_mulai" value="{{ $transaksi->tgl_mulai }}">
-            @error('tgl_mulai')
-                <div class="invalid-feedback">{{ $message }}</div>
-            @enderror
+                <label for="tgl_mulai">Tanggal mulai sewa</label>
+                <input type="date" class="form-control @error('tgl_mulai') is-invalid @enderror" id="tgl_mulai" name="tgl_mulai" value="{{ date('Y-m-d') }}">
+                @error('tgl_mulai')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
             </div>
             <div class="col-md-6">
                 <label for="tgl_selesai">Tanggal Selesai</label>
-                <input type="date" class="form-control @error('tgl_selesai') is-invalid @enderror" id="tgl_selesai" name="tgl_selesai" value="{{ $transaksi->tgl_selesai }}">
+                <input type="date" class="form-control @error('tgl_selesai') is-invalid @enderror" id="tgl_selesai" name="tgl_selesai" value="{{ old('tgl_selesai') }}">
                 @error('tgl_selesai')
                     <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
@@ -174,7 +112,7 @@
             <label for="total">Total Harga</label>
             <div class="input-group">
                 <span class="input-group-text">Rp.</span>
-                <input type="text" class="form-control @error('total') is-invalid @enderror" id="total" name="total" value="{{ $transaksi->total }}" placeholder="Total harga sewa" required>
+                <input type="text" class="form-control @error('total') is-invalid @enderror" id="total" name="total" value="{{ old('total') }}" placeholder="Total harga sewa" required>
             </div>
             @error('total')
                 <div class="invalid-feedback">{{ $message }}</div>
@@ -183,15 +121,15 @@
 
         <div class="row mt-2">
             <div class="col-md-6">
-            <label for="km_awal">Km Awal</label>
-                <input type="number" class="form-control @error('km_awal') is-invalid @enderror" id="km_awal" name="km_awal" value="{{ $transaksi->km_awal }}" placeholder="Kilometer motor awal" readonly>
+                <label for="km_awal">Km Awal</label>
+                <input type="number" class="form-control @error('km_awal') is-invalid @enderror" id="km_awal" name="km_awal" value="{{ old('km_awal') }}" placeholder="Kilometer motor awal">
                 @error('km_awal')
                     <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
             </div>
             <div class="col-md-6">
                 <label for="km_akhir">Km Akhir</label>
-                <input type="number" class="form-control @error('km_akhir') is-invalid @enderror" id="km_akhir" name="km_akhir" value="{{ $transaksi->km_akhir }}" placeholder="Masukan kilometer akhir">
+                <input type="text" class="form-control @error('km_akhir') is-invalid @enderror" id="km_akhir" name="km_akhir" value="-" readonly>
                 @error('km_akhir')
                     <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
@@ -200,14 +138,14 @@
         
         <div class="form-group mt-2">
             <label for="jumlah_helm">Jumlah Helm</label>
-            <input type="text" class="form-control @error('jumlah_helm') is-invalid @enderror" id="jumlah_helm" name="jumlah_helm" value="{{ $transaksi->jumlah_helm }}" placeholder="Jumlah helm">
+            <input type="text" class="form-control @error('jumlah_helm') is-invalid @enderror" id="jumlah_helm" name="jumlah_helm" value="{{ old('jumlah_helm') }}" placeholder="Jumlah helm">
             @error('jumlah_helm')
                 <div class="invalid-feedback">{{ $message }}</div>
             @enderror
         </div>
         <div class="form-group mt-2">
             <label for="catatan">Catatan</label>
-            <textarea class="form-control" name="catatan" id="catatan" cols="10" rows="5" placeholder="Masukan catatan" required>{{ $transaksi->catatan }}</textarea>
+            <textarea class="form-control" name="catatan" id="catatan" cols="10" rows="5" placeholder="Masukan catatan" required>{{ old('catatan') }}</textarea>
             @error('catatan')
                 <div class="invalid-feedback">{{ $message }}</div>
             @enderror
@@ -215,11 +153,23 @@
     </div>
 
     <div class="form-group mt-2 mb-2">
-        <button type="submit" class="btn btn-warning">Simpan Pengembalian</button>
+        <button type="submit" class="btn btn-primary">Simpan</button>
     </div>
 </form>
 
 <script>
+    // KODE TRANSAKSI OTOMATIS
+    window.onload = function(){
+        let today = new Date();
+        let year = today.getFullYear().toString();
+        let month = (today.getMonth() + 1).toString().padStart(2, '0');
+        let day = today.getDate().toString().padStart(2, '0');
+        let createKe = localStorage.getItem('create_ke') || 1;
+        localStorage.setItem('create_ke', ++createKe);
+        let kodeTransaksi = 'RTL' + month + day + createKe.toString().padStart(3, '0');
+        document.getElementById('kode_transaksi').value = kodeTransaksi;
+    }
+
     // MENENTUKAN HARGA SEWA SESUAI DENGAN MOTOR YANG DI PILIH PADA SELECT.
     let plat_motor = document.getElementById("plat_motor");
     // tambahkan event listener untuk menangkap perubahan pada pilihan plat_motor

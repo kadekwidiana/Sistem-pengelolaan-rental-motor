@@ -31,7 +31,7 @@
                     </nav>
                 </div>
                 <div class="sb-sidenav-menu-heading">Transaksi</div>
-                <a class="nav-link" href="{{ route('transaksi.index') }}">
+                <a class="nav-link {{ ($active === "Transaksi") ? 'active' : '' }}" href="{{ route('transaksi.index') }}">
                     <div class="sb-nav-link-icon"><i class="fas fa-dollar-sign"></i></div>
                     Transaksi
                 </a>
