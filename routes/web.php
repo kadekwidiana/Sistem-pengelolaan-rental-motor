@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\PenyewaController;
-use App\Http\Controllers\Transaksi;
+use App\Http\Controllers\PegawaiController;
 use App\Http\Controllers\TransaksiController;
 use App\Http\Controllers\motorController;
 use App\Http\Livewire\TransaksiLivewire;
@@ -37,3 +37,10 @@ Route::resource('/motors', MotorController::class);
 
 // Penyewa
 Route::resource('/penyewa', PenyewaController::class);
+
+// Pegawai
+// Route::resource('/pegawai', PengawaiController::class);
+Route::get('/pegawai', [PegawaiController::class, 'index'])->name('pegawai.index');
+Route::get('/pegawai/create', [PegawaiController::class, 'create'])->name('pegawai.create');
+Route::post('/pegawai', [PegawaiController::class, 'store'])->name('pegawai.store');
+
