@@ -65,7 +65,7 @@
                     <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
             </div>
-            
+
             <div class="col-md-6">
                 <label for="no_telepon">No Handphone</label>
                 <input type="text" class="form-control @error('no_telepon') is-invalid @enderror" id="no_telepon" name="no_telepon" value="{{ old('no_telepon') }}" placeholder="No Telepon" required>
@@ -100,7 +100,7 @@
                 <div class="invalid-feedback">{{ $message }}</div>
             @enderror
         </div>
-        
+
         <div class="row mt-2">
             <div class="col-md-6">
                 <label for="plat_motor">Pilih Motor</label>
@@ -116,17 +116,17 @@
                 </select>
                 @error('plat_motor')
                     <div class="invalid-feedback">{{ $message }}</div>
-                @enderror 
+                @enderror
             </div>
             <div class="col-md-6">
                 <label for="harga_sewa">Harga Sewa</label>
                 <div class="input-group">
                     <span class="input-group-text">Rp.</span>
-                    <input type="text" name="harga_sewa" id="harga_sewa" class="form-control" readonly value="{{ old('harga_sewa') }}" placeholder="Harga sewa motor/hari">
+                    <input type="text" name="harga_sewa" id="harga_sewa" class="form-control" readonly placeholder="Harga sewa motor/hari">
                 </div>
             </div>
         </div>
-        
+
         <div class="form-group mt-2">
             <label for="id_pegawai">Operator/Pegawai</label>
             <select name="id_pegawai" id="id_pegawai" class="form-control @error('id_pegawai') is-invalid @enderror">
@@ -160,7 +160,7 @@
                     <label class="form-check-label" for="inlineRadio2">Bulanan</label>
                 </div>
             </div>
-            
+
         </div>
         {{-- Tanggal sewa --}}
         <div class="row mt-2">
@@ -179,7 +179,7 @@
                 @enderror
             </div>
         </div>
-        
+
         {{-- Total Harga --}}
         <div class="form-group mt-2">
             <label for="total">Total Harga</label>
@@ -208,7 +208,7 @@
                 @enderror
             </div>
         </div>
-        
+
         <div class="form-group mt-2">
             <label for="jumlah_helm">Jumlah Helm</label>
             <input type="text" class="form-control @error('jumlah_helm') is-invalid @enderror" id="jumlah_helm" name="jumlah_helm" value="{{ old('jumlah_helm') }}" placeholder="Jumlah helm">
@@ -263,19 +263,19 @@
 
     // HITUNG TOTAL HARGA BERDASARKAN TANGGAL MULAI&SELESAI DI PILIH.
     function hitungTotalHarga() {
-        // ambil tgl mulai dan selesai
-        let tglMulai = new Date(document.getElementById('tgl_mulai').value);
-        let tglSelesai = new Date(document.getElementById('tgl_selesai').value);
-        // hitung selisih hari antara tanggal mulai dan selesai
-        let selisihHari = (tglSelesai - tglMulai) / (1000 * 60 * 60 * 24);
-        // ambil harga perhari
-        let hargaPerHari = document.getElementById('harga_sewa');
-        // hitung total harga
-        let totalHarga = selisihHari * hargaPerHari;
-        // berikan diskon jika sewa 1 minggu atau 1 bulan
-        // set nilai total harga
-        document.getElementById('total').value = totalHarga;
-    }
+    // ambil tgl mulai dan selesai
+    let tglMulai = new Date(document.getElementById('tgl_mulai').value);
+    let tglSelesai = new Date(document.getElementById('tgl_selesai').value);
+    // hitung selisih hari antara tanggal mulai dan selesai
+    let selisihHari = (tglSelesai - tglMulai) / (1000 * 60 * 60 * 24);
+    // ambil harga perhari
+    let hargaPerHari = document.getElementById('harga_sewa').value; // <-- tambahkan .value
+    // hitung total harga
+    let totalHarga = selisihHari * hargaPerHari;
+    // set nilai total harga
+    document.getElementById('total').value = totalHarga;
+}
+
     // panggil fungsi tgl_mulai & tgl_selesai
     document.getElementById('tgl_mulai').addEventListener('change', hitungTotalHarga);
     document.getElementById('tgl_selesai').addEventListener('change', hitungTotalHarga);
@@ -301,6 +301,6 @@
         }
         document.getElementById("total").value = total_harga;
     }
-    
+
 </script>
 @endsection
