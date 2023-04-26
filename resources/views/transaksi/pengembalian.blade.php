@@ -239,10 +239,9 @@
         // hitung selisih hari antara tanggal mulai dan selesai
         let selisihHari = (tglSelesai - tglMulai) / (1000 * 60 * 60 * 24);
         // ambil harga perhari
-        let hargaPerHari = document.getElementById('harga_sewa');
+        let hargaPerHari = document.getElementById('harga_sewa').value; // <-- tambahkan .value
         // hitung total harga
         let totalHarga = selisihHari * hargaPerHari;
-        // berikan diskon jika sewa 1 minggu atau 1 bulan
         // set nilai total harga
         document.getElementById('total').value = totalHarga;
     }

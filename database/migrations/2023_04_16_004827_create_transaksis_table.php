@@ -14,12 +14,12 @@ return new class extends Migration
     public function up()
     {
         Schema::create('transaksis', function (Blueprint $table) {
-            $table->string('kode_transaksi', 10)->primary();
-            $table->string('plat_motor', 10);
+            $table->string('kode_transaksi', 15)->primary();
+            $table->string('plat_motor', 15);
             $table->foreign('plat_motor')->references('plat_motor')->on('motors');
-            $table->string('no_paspor', 10);
+            $table->string('no_paspor', 15);
             $table->foreign('no_paspor')->references('no_paspor')->on('penyewas');
-            $table->string('id_pegawai', 10);
+            $table->string('id_pegawai', 15);
             $table->foreign('id_pegawai')->references('id_pegawai')->on('pegawais');
             $table->date('tgl_mulai');
             $table->date('tgl_selesai');

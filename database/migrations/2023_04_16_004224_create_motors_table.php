@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('motors', function (Blueprint $table) {
-            $table->string('plat_motor', 10)->primary();
+            $table->string('plat_motor', 15)->primary();
             $table->string('nama_motor', 20);
             $table->string('warna', 10);
             $table->string('tipe', 10);

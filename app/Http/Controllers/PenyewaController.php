@@ -110,6 +110,7 @@ class PenyewaController extends Controller
 
         $penyewa->delete(); // menghapus data penyewa dari database
         return redirect()->route('penyewa.index')->with('success', 'Data penyewa berhasil dihapus.'); // redirect ke halaman index dengan pesan sukses
+
     }
 }
 

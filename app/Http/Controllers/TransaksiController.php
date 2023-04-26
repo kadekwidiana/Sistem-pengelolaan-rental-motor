@@ -35,7 +35,7 @@ class TransaksiController extends Controller
     {
         $validated = $request->validate([
             // penyewa
-            'no_paspor' => 'required|unique:transaksis,no_paspor',
+            'no_paspor' => 'required|unique:transaksis,no_paspor|max:15',
             'nama_penyewa' => 'required',
             'email' => 'required',
             'asal_negara' => 'required',
@@ -44,7 +44,7 @@ class TransaksiController extends Controller
             'no_telepon' => 'required',
             'no_sim' => 'required',
             // transaksi
-            'kode_transaksi' => 'required|unique:transaksis,kode_transaksi',
+            'kode_transaksi' => 'required|unique:transaksis,kode_transaksi|max:15',
             'plat_motor' => 'required',
             'no_paspor' => 'required',
             'id_pegawai' => 'required',
@@ -114,12 +114,13 @@ class TransaksiController extends Controller
             'active' => 'Transaksi'
         ], compact('motors', 'penyewas', 'pegawais'));
     }
+
     // mengolah tambah data penyewa yang sudah ada
     public function tambah(Request $request)
     {
         $validated = $request->validate([
             // transaksi
-            'kode_transaksi' => 'required|unique:transaksis,kode_transaksi',
+            'kode_transaksi' => 'required|unique:transaksis,kode_transaksi|max:15',
             'plat_motor' => 'required',
             'no_paspor' => 'required',
             'id_pegawai' => 'required',

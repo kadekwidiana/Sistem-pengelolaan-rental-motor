@@ -8,9 +8,9 @@
 <form method="POST" action="{{ route('transaksi.store') }}">
     @csrf
     {{-- INPUT DATA PENYEWA --}}
-    <div class="border p-3 rounded">
+   <div class="border p-3 rounded">
         <div class="form-group mt-2">
-            <label for="no_paspor">No Paspor</label>
+            <label label for="no_paspor">No Paspor</label>
             <input type="text" class="form-control no_paspor_input @error('no_paspor') is-invalid @enderror" id="no_paspor_input" name="no_paspor" value="{{ old('no_paspor') }}" placeholder="Masukan no paspor" required>
             @error('no_paspor')
                 <div class="invalid-feedback">{{ $message }}</div>
@@ -275,7 +275,6 @@
     // set nilai total harga
     document.getElementById('total').value = totalHarga;
 }
-
     // panggil fungsi tgl_mulai & tgl_selesai
     document.getElementById('tgl_mulai').addEventListener('change', hitungTotalHarga);
     document.getElementById('tgl_selesai').addEventListener('change', hitungTotalHarga);
