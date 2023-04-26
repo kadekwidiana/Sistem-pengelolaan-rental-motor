@@ -7,6 +7,17 @@
                     <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                     Dashboard
                 </a>
+                <div class="sb-sidenav-menu-heading">Operator</div>
+                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collaps" aria-expanded="false" aria-controls="collaps">
+                    <div class="sb-nav-link-icon"><i class="fas fa-user"></i></div>
+                    Operator/Pegawai
+                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                </a>
+                <div class="collapse" id="collaps" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                    <nav class="sb-sidenav-menu-nested nav">
+                        <a class="nav-link" href="">Data Pegawai</a>
+                    </nav>
+                </div>
                 <div class="sb-sidenav-menu-heading">Data</div>
                 <a class="nav-link {{ ($active === "Motor") ? 'active' : '' }}" href="{{ route('motors.index') }}">
                     <div class="sb-nav-link-icon"><i class="fas fa-motorcycle"></i></div>
@@ -18,15 +29,15 @@
                         <a class="nav-link" href="">Data Motor</a>
                     </nav>
                 </div>
-                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
-                    <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
-                    Pelanggan
+                <a class="nav-link collapsed {{ ($active === "Penyewa") ? 'active' : '' }}" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
+                    <div class="sb-nav-link-icon "><i class="fas fa-users"></i></div>
+                    Penyewa
                     <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                 </a>
                 <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
                     <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
-                        <a class="nav-link collapsed" href="">
-                            Data Pelanggan
+                        <a class="nav-link collapsed {{ ($active === "Penyewa") ? 'active' : '' }}" href="{{ route('penyewa.index') }}">
+                            Data Penyewa
                         </a>
                     </nav>
                 </div>
