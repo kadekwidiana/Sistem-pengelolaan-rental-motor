@@ -46,14 +46,21 @@
             <td>{{ $penyewa->domisili }}</td>
             <td>{{ $penyewa->no_telepon }}</td>
             <td>{{ $penyewa->no_sim }}</td>
-            
+
             <td>
                 <form class="d-inline" action="{{ route('penyewa.destroy', $penyewa->no_paspor) }}" method="POST">
                   @csrf
                   @method('delete')
                   <button class="btn btn-danger btn-sm mt-1" onclick="return confirm('Hapus data transaksi ini?')">Hapus</button>
                 </form>
-              </td>
+                {{-- <form action="{{ route('penyewa.destroy', $penyewa->no_paspor) }}" method="POST">
+                @csrf
+                @method('DELETE')
+                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Anda yakin ingin menghapus data ini?')">Delete</button> --}}
+            </form>
+
+
+   </td>
         </tr>
         @endforeach
     </tbody>

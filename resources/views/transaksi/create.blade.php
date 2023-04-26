@@ -263,19 +263,18 @@
 
     // HITUNG TOTAL HARGA BERDASARKAN TANGGAL MULAI&SELESAI DI PILIH.
     function hitungTotalHarga() {
-        // ambil tgl mulai dan selesai
-        let tglMulai = new Date(document.getElementById('tgl_mulai').value);
-        let tglSelesai = new Date(document.getElementById('tgl_selesai').value);
-        // hitung selisih hari antara tanggal mulai dan selesai
-        let selisihHari = (tglSelesai - tglMulai) / (1000 * 60 * 60 * 24);
-        // ambil harga perhari
-        let hargaPerHari = document.getElementById('harga_sewa').value; // <-- tambahkan .value
-        // hitung total harga
-        let totalHarga = selisihHari * hargaPerHari;
-        // set nilai total harga
-        document.getElementById('total').value = totalHarga;
-    }
-
+    // ambil tgl mulai dan selesai
+    let tglMulai = new Date(document.getElementById('tgl_mulai').value);
+    let tglSelesai = new Date(document.getElementById('tgl_selesai').value);
+    // hitung selisih hari antara tanggal mulai dan selesai
+    let selisihHari = (tglSelesai - tglMulai) / (1000 * 60 * 60 * 24);
+    // ambil harga perhari
+    let hargaPerHari = document.getElementById('harga_sewa').value; // <-- tambahkan .value
+    // hitung total harga
+    let totalHarga = selisihHari * hargaPerHari;
+    // set nilai total harga
+    document.getElementById('total').value = totalHarga;
+}
     // panggil fungsi tgl_mulai & tgl_selesai
     document.getElementById('tgl_mulai').addEventListener('change', hitungTotalHarga);
     document.getElementById('tgl_selesai').addEventListener('change', hitungTotalHarga);
