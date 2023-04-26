@@ -8,7 +8,7 @@
                     Dashboard
                 </a>
                 <div class="sb-sidenav-menu-heading">Data</div>
-                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+                <a class="nav-link {{ ($active === "Motor") ? 'active' : '' }}" href="{{ route('motors.index') }}">
                     <div class="sb-nav-link-icon"><i class="fas fa-motorcycle"></i></div>
                     Motor
                     <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
