@@ -18,15 +18,15 @@
                         <a class="nav-link" href="">Data Motor</a>
                     </nav>
                 </div>
-                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
-                    <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
-                    Pelanggan
+                <a class="nav-link collapsed {{ ($active === "Penyewa") ? 'active' : '' }}" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
+                    <div class="sb-nav-link-icon "><i class="fas fa-users"></i></div>
+                    Penyewa
                     <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                 </a>
                 <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
                     <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
-                        <a class="nav-link collapsed" href="">
-                            Data Pelanggan
+                        <a class="nav-link collapsed {{ ($active === "Penyewa") ? 'active' : '' }}" href="{{ route('penyewa.index') }}">
+                            Data Penyewa
                         </a>
                     </nav>
                 </div>

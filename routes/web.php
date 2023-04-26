@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PenyewaController;
 use App\Http\Controllers\Transaksi;
 use App\Http\Controllers\TransaksiController;
 use App\Http\Livewire\TransaksiLivewire;
@@ -29,3 +30,6 @@ Route::get('/transaksi/{kode_transaksi}/pengembalian', [TransaksiController::cla
 Route::post('/transaksi/{kode_transaksi}/pengembalian', [TransaksiController::class, 'pengembalian'])->name('transaksi.pengembalian');
 Route::get('/transaksi/create/data-transaksi', [TransaksiController::class, 'viewadd'])->name('transaksi.viewadd');
 Route::post('/transaksi/create/data-transaksi', [TransaksiController::class, 'tambah'])->name('transaksi.tambah');
+
+// Penyewa
+Route::resource('/penyewa', PenyewaController::class);
