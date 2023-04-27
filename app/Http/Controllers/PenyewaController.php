@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Penyewa;
+
 use App\Models\Motor;
 use App\Models\Transaksi;
 use App\Http\Controllers\TransaksiController;
+
 class PenyewaController extends Controller
 {
     /**
@@ -86,24 +88,22 @@ class PenyewaController extends Controller
      */
     public function destroy($no_paspor)
     {
-            $penyewa = Penyewa::find($no_paspor); // mencari data penyewa yang akan dihapus
+        $penyewa = Penyewa::find($no_paspor); // mencari data penyewa yang akan dihapus
         if (!$penyewa) {
             return redirect()->route('penyewa.index')->with('error', 'Data penyewa tidak ditemukan.'); // redirect ke halaman index dengan pesan error jika data tidak ditemukan
-            $motor = Motor::findOrFail($transaksi->plat_motor);
-        $motor->status = 1;
-        $motor->save();
+
         }
 
         $transaksi = Transaksi::where('no_paspor', $no_paspor)->first(); // mencari data transaksi berdasarkan no_paspor
         if ($transaksi) {
             $transaksi->delete();
-             // menghapus data transaksi
-             // ubah status motor
-        $motor = Motor::findOrFail($transaksi->plat_motor);
-        $motor->status = 1;
-        $motor->save();
-        
-        $transaksi->delete(); // menghapus data transaksi
+            // menghapus data transaksi
+            // ubah status motor
+            $motor = Motor::findOrFail($transaksi->plat_motor);
+            $motor->status = 1;
+            $motor->save();
+
+            $transaksi->delete(); // menghapus data transaksi
         }
 
 
@@ -113,4 +113,3 @@ class PenyewaController extends Controller
 
     }
 }
-

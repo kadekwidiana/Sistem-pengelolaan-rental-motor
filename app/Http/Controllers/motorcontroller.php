@@ -16,8 +16,8 @@ class MotorController extends Controller
     {
         $motors = Motor::all();
         return view('motors.index', [
-            'title'=> 'Data motor',
-            'active'=> 'motor'
+            'title' => 'Data Motor',
+            'active' => 'Motor'
         ], compact('motors'));
     }
 
@@ -27,12 +27,12 @@ class MotorController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-{
-    return view('motors.create', [
-        'title' => 'Data motor',
-        'active' => 'motor'
-    ]);
-}
+    {
+        return view('motors.create', [
+            'title' => 'Data Motor',
+            'active' => 'Motor'
+        ]);
+    }
 
 
     /**
@@ -60,7 +60,6 @@ class MotorController extends Controller
 
         $motor = Motor::create($validatedData);
         return redirect()->route('motors.index')->with('success', 'Motor created successfully.');
-        
     }
 
     /**
@@ -73,8 +72,8 @@ class MotorController extends Controller
     {
         $motor = Motor::findOrFail($plat_motor);
         return view('motors.show', [
-            'title' => 'Data motor',
-            'active' => 'motor',  
+            'title' => 'Data Motor',
+            'active' => 'Motor',
             'motor' => $motor
         ]);
     }
@@ -86,14 +85,17 @@ class MotorController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($plat_motor)
-{
-    $motor = Motor::findOrFail($plat_motor);
-    return view('motors.edit', [
-        'title'=> 'Data motor',
-        'active'=> 'motor'
-    ],
-    compact('motor'));
-}
+    {
+        $motor = Motor::findOrFail($plat_motor);
+        return view(
+            'motors.edit',
+            [
+                'title' => 'Data Motor',
+                'active' => 'Motor'
+            ],
+            compact('motor')
+        );
+    }
 
 
     /**
@@ -124,34 +126,34 @@ class MotorController extends Controller
 
         return redirect()->route('motors.index')->with('success', 'Motor updated successfully.');
     }
-//     public function edit($plat_motor)
-// {
-//     $motor = Motor::findOrFail($plat_motor);
-//     return view('motors.edit', compact('motor'));
-// }
+    //     public function edit($plat_motor)
+    // {
+    //     $motor = Motor::findOrFail($plat_motor);
+    //     return view('motors.edit', compact('motor'));
+    // }
 
-// public function update(Request $request, $plat_motor)
-// {
-//     $motor = Motor::findOrFail($plat_motor);
+    // public function update(Request $request, $plat_motor)
+    // {
+    //     $motor = Motor::findOrFail($plat_motor);
 
-//     $motor->nama_motor = $request->input('nama_motor');
-//     $motor->warna = $request->input('warna');
-//     $motor->tipe = $request->input('tipe');
-//     $motor->tahun = $request->input('tahun');
-//     $motor->tgl_pajak = $request->input('tgl_pajak');
-//     $motor->nama_pemilik = $request->input('nama_pemilik');
-//     $motor->cc = $request->input('cc');
-//     $motor->harga_sewa = $request->input('harga_sewa');
-//     $motor->status = $request->input('status');
-//     $motor->gambar_motor = $request->input('gambar_motor');
-//     $motor->tgl_catat = $request->input('tgl_catat');
+    //     $motor->nama_motor = $request->input('nama_motor');
+    //     $motor->warna = $request->input('warna');
+    //     $motor->tipe = $request->input('tipe');
+    //     $motor->tahun = $request->input('tahun');
+    //     $motor->tgl_pajak = $request->input('tgl_pajak');
+    //     $motor->nama_pemilik = $request->input('nama_pemilik');
+    //     $motor->cc = $request->input('cc');
+    //     $motor->harga_sewa = $request->input('harga_sewa');
+    //     $motor->status = $request->input('status');
+    //     $motor->gambar_motor = $request->input('gambar_motor');
+    //     $motor->tgl_catat = $request->input('tgl_catat');
 
-//     $motor->save();
+    //     $motor->save();
 
-//     // return redirect()->route('motors.show', $plat_motor)->with('success', 'Motor updated successfully.');
-//     return redirect()->route('motors.index')->with('success', 'Motor updated successfully.');
-// }
-    
+    //     // return redirect()->route('motors.show', $plat_motor)->with('success', 'Motor updated successfully.');
+    //     return redirect()->route('motors.index')->with('success', 'Motor updated successfully.');
+    // }
+
     /**
      * Remove the specified resource from storage.
      *
@@ -162,8 +164,7 @@ class MotorController extends Controller
     {
         $motor = Motor::findOrFail($plat_motor);
         $motor->delete();
-    
+
         return redirect()->route('motors.index')->with('success', 'Motor deleted successfully.');
     }
 }
-       

@@ -19,14 +19,17 @@
                     </nav>
                 </div>
                 <div class="sb-sidenav-menu-heading">Data</div>
-                <a class="nav-link {{ ($active === "Motor") ? 'active' : '' }}" href="{{ route('motors.index') }}">
-                    <div class="sb-nav-link-icon"><i class="fas fa-motorcycle"></i></div>
+                
+                <a class="nav-link collapsed {{ ($active === "Motor") ? 'active' : '' }}" href="#" data-bs-toggle="collapse" data-bs-target="#collaps2" aria-expanded="false" aria-controls="collaps2">
+                    <div class="sb-nav-link-icon "><i class="fas fa-users"></i></div>
                     Motor
                     <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                 </a>
-                <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
-                    <nav class="sb-sidenav-menu-nested nav">
-                        <a class="nav-link" href="">Data Motor</a>
+                <div class="collapse" id="collaps2" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
+                    <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
+                        <a class="nav-link collapsed {{ ($active === "Motor") ? 'active' : '' }}" href="{{ route('motors.index') }}">
+                            Data Motor
+                        </a>
                     </nav>
                 </div>
                 <a class="nav-link collapsed {{ ($active === "Penyewa") ? 'active' : '' }}" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
