@@ -82,8 +82,12 @@ class PenyewaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($no_paspor)
     {
-        //
+        $penyewa = Penyewa::where('no_paspor', $no_paspor)->first();
+
+        $penyewa->delete();
+
+        return redirect()->route('penyewa.index')->with('success', 'Data Penyewa berhasil di hapus.');
     }
 }
