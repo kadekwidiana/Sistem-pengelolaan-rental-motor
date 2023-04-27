@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\PenyewaController;
 use App\Http\Controllers\PegawaiController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\TransaksiController;
 use App\Http\Controllers\motorController;
 use App\Http\Livewire\TransaksiLivewire;
@@ -44,3 +45,5 @@ Route::get('/pegawai', [PegawaiController::class, 'index'])->name('pegawai.index
 Route::get('/pegawai/create', [PegawaiController::class, 'create'])->name('pegawai.create');
 Route::post('/pegawai', [PegawaiController::class, 'store'])->name('pegawai.store');
 
+
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
