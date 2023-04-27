@@ -8,18 +8,18 @@
                     Dashboard
                 </a>
                 <div class="sb-sidenav-menu-heading">Operator</div>
-                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collaps" aria-expanded="false" aria-controls="collaps">
+                <a class="nav-link collapsed {{ ($active === "Pegawai") ? 'active' : '' }}" href="#" data-bs-toggle="collapse" data-bs-target="#pegawai" aria-expanded="false" aria-controls="pegawai">
                     <div class="sb-nav-link-icon"><i class="fas fa-user"></i></div>
                     Operator/Pegawai
                     <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                 </a>
-                <div class="collapse" id="collaps" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                <div class="collapse" id="pegawai" aria-labelledby="headingOne" data-bs-parent="#pegawai">
                     <nav class="sb-sidenav-menu-nested nav">
-                        <a class="nav-link" href="">Data Pegawai</a>
+                        <a class="nav-link {{ ($active === "Pegawai") ? 'active' : '' }}" href="{{route('pegawai.index')}}">Data Pegawai</a>
                     </nav>
                 </div>
                 <div class="sb-sidenav-menu-heading">Data</div>
-                
+
                 <a class="nav-link collapsed {{ ($active === "Motor") ? 'active' : '' }}" href="#" data-bs-toggle="collapse" data-bs-target="#collaps2" aria-expanded="false" aria-controls="collaps2">
                     <div class="sb-nav-link-icon "><i class="fas fa-users"></i></div>
                     Motor
@@ -49,7 +49,7 @@
                     <div class="sb-nav-link-icon"><i class="fas fa-dollar-sign"></i></div>
                     Transaksi
                 </a>
-                
+
             </div>
         </div>
     </nav>

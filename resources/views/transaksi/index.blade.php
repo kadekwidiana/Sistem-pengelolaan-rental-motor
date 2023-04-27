@@ -50,7 +50,7 @@
             <td>{{ number_format($transaksi->km_awal, 0, ',', '.') }}</td>
             <td>{{ $transaksi->km_akhir }}</td>
             <td>{{ $transaksi->jumlah_helm }}</td>
-            
+
             <td>
                 <a href="{{ route('transaksi.pengembalian', $transaksi->kode_transaksi) }}" class="btn btn-warning btn-sm mt-1">Pengembalian</a>
                 <a href="{{ route('transaksi.edit', $transaksi->kode_transaksi) }}" class="btn btn-success btn-sm mt-1">Edit</a>
