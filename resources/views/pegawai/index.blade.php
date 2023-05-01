@@ -20,6 +20,7 @@
 </div>
 <table class="table table-bordered">
     <thead>
+      <table class="table table-bordered text-center">
         <tr>
             <th>No.</th>
             <th>Id Pegawai</th>
