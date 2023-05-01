@@ -6,6 +6,7 @@ use App\Http\Controllers\TransaksiController;
 use App\Http\Controllers\motorcontroller;
 use App\Http\Controllers\PegawaiController;
 use App\Http\Controllers\PenyewaController;
+use App\Http\Controllers\PengeluaranController;
 use App\Http\Controllers\DashboardController;
 
 /*
