@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="align-content-end mb-4">
-        <form method="POST" action="{{ route('motors.store') }}">
+        <form method="POST" action="{{ route('motors.store') }}" enctype="multipart/form-data">
             @csrf
             <div class="border p-3 rounded">
                 <div class="form-group mt-2">

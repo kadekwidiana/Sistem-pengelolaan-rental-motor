@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Pegawai;
+use Illuminate\Support\Facades\Auth;
 
 class PegawaiController extends Controller
 {
@@ -16,7 +17,7 @@ class PegawaiController extends Controller
     {
         $pegawais = Pegawai::all();
 
-        return view('pegawai.index',[
+        return view('pegawai.index', [
             'title' => 'Operator & Pegawai',
             'active' => 'Pegawai'
         ], compact('pegawais'));
@@ -29,7 +30,7 @@ class PegawaiController extends Controller
      */
     public function create()
     {
-        return view('pegawai.create',[
+        return view('pegawai.create', [
             'title' => 'Operator & Pegawai',
             'active' => 'Pegawai'
         ]);
@@ -57,7 +58,7 @@ class PegawaiController extends Controller
         Pegawai::create($request->all());
 
         return redirect()->route('pegawai.index')
-            ->with('success','Pegawai created successfully.');
+            ->with('success', 'Pegawai created successfully.');
     }
     /**
      * Display the specified resource.
@@ -102,5 +103,21 @@ class PegawaiController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function showLoginForm()
+    {
+        return view('auth.login');
+    }
+
+    public function login(Request $request)
+    {
+        $credentials = $request->only('username', 'password');
+
+        if (Auth::attempt($credentials)) {
+            return redirect()->indended('/dashboard');
+        }
+
+        return redirect()->back()->with('error', 'Salah');
     }
 }
