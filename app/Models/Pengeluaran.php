@@ -4,12 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\motors;
 
 class Pengeluaran extends Model
 {
     use HasFactory;
 
-    protected $table = 'tb_pengeluaran';
+    protected $table = 'pengeluarans';
     protected $primaryKey = 'id_pengeluaran';
     public $incrementing = false;
     protected $keyType = 'string';

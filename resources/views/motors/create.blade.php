@@ -2,8 +2,9 @@
 
 @section('content')
 <div class="align-content-end mb-4">
-        <form method="POST" action="{{ route('motors.store') }}">
-            @csrf
+    <form method="POST" action="{{ route('motors.store') }}" enctype="multipart/form-data">
+        @csrf
+        <!-- elemen form lainnya -->
             <div class="border p-3 rounded">
                 <div class="form-group mt-2">
                     <label label for="plat_motor">Plat Motor</label>

@@ -5,6 +5,7 @@ use App\Http\Controllers\PegawaiController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\TransaksiController;
 use App\Http\Controllers\motorController;
+use App\Http\Controllers\PengeluaranController;
 use App\Http\Livewire\TransaksiLivewire;
 use Illuminate\Support\Facades\Route;
 
@@ -20,8 +21,40 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('frontpage.landingpage', [
+        'title' => 'Home',
+        'active' => 'Home'
+    ]);
 });
+Route::get('/about', function () {
+    return view('frontpage.about', [
+        'title' => 'About',
+        'active' => 'About'
+    ]);
+})->name('about');
+Route::get('/contak', function () {
+    return view('frontpage.contak', [
+        'title' => 'Contact',
+        'active' => 'Contact'
+    ]);
+})->name('contak');
+Route::get('/motor', function () {
+    return view('frontpage.motor', [
+        'title' => 'Motors',
+        'active' => 'Motors'
+    ]);
+})->name('motor');
+Route::get('/detail', function () {
+    return view('frontpage.detail', [
+        'title' => 'Detail',
+        'active' => 'Detail'
+    ]);
+})->name('detail');
+
+Route::get('/alert', function () {
+    return view('frontpage.tes.alert');
+});
+
 
 Route::get('/dashboard', function () {
     return view('dashboard.index');
@@ -33,8 +66,8 @@ Route::post('/transaksi/{kode_transaksi}/pengembalian', [TransaksiController::cl
 Route::get('/transaksi/create/data-transaksi', [TransaksiController::class, 'viewadd'])->name('transaksi.viewadd');
 Route::post('/transaksi/create/data-transaksi', [TransaksiController::class, 'tambah'])->name('transaksi.tambah');
 
-Route::resource('/motors', MotorController::class);
 
+Route::resource('/motors', MotorController::class);
 
 // Penyewa
 Route::resource('/penyewa', PenyewaController::class);
@@ -47,3 +80,11 @@ Route::post('/pegawai', [PegawaiController::class, 'store'])->name('pegawai.stor
 
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
+Route::resource('/pengeluaran', PengeluaranController::class);
+Route::get('/pengeluaran/create', [PengeluaranController::class, 'create'])->name('pengeluaran.create');
+Route::post('/pengeluaran', [PengeluaranController::class, 'store'])->name('pengeluaran.store');
+Route::get('/pengeluarans/create', [PengeluaranController::class, 'create'])->name('pengeluarans.create');
+Route::resource('/pengeluarans', PengeluaranController::class);
+
+
+

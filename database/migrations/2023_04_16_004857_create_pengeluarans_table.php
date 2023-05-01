@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('plat_motor', 15);
             $table->string('id_pegawai', 15);
             $table->date('tgl_pengeluaran');
-            $table->string('jenis_pengeluaran', 20);
+            $table->string('jenis_pengeluaran');
             $table->string('biaya_pengeluaran', 10);
             $table->timestamps();
 
