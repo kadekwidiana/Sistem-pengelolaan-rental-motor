@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Motor;
+use Illuminate\Support\Facades\Storage;
 
 class MotorController extends Controller
 {
@@ -58,7 +59,11 @@ class MotorController extends Controller
             'tgl_catat' => 'required|date'
         ]);
 
-        $motor = Motor::create($validatedData);
+        if ($request->file('gambar_motor')) {
+            $vallidatedData['gambar_motor'] = $request->file('gambar_motor')->store('motors-image');
+        }
+
+        Motor::create($validatedData);
         return redirect()->route('motors.index')->with('success', 'Motor created successfully.');
     }
 

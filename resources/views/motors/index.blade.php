@@ -62,7 +62,8 @@
                                 <span class="badge bg-secondary">Disewakan</span>
                             @endif
                         </td>
-                        <td><img src="{{ Storage::url($motor->gambar_motor) }}" alt="{{ $motor->nama_motor }}" class="img-fluid"></td>
+                        {{-- <td><img src="{{ Storage::url($motor->gambar_motor) }}" alt="{{ $motor->nama_motor }}" class="img-fluid"></td> --}}
+                        <td><img src="{{ asset('storage/' . $motor->gambar_motor) }}" width="150" alt=""></td>
                         <td>{{ $motor->tgl_catat }}</td>
                         <td>
                             <div class="d-flex justify-content-center align-items-center">

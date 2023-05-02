@@ -4,8 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Foundation\Auth\User as AuthenticatableUser;
+use Illuminate\Support\Facades\Auth;
 
-class Pegawai extends Model
+class Pegawai extends AuthenticatableUser implements Authenticatable
 {
     use HasFactory;
 
@@ -22,7 +25,7 @@ class Pegawai extends Model
         'password',
         'alamat',
         'tgl_lahir',
-        'jenis_kelamin'
+        'jenis_kelamin' 
     ];
 
     public function transaksi()
