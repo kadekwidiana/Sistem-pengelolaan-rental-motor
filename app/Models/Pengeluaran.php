@@ -9,7 +9,7 @@ class Pengeluaran extends Model
 {
     use HasFactory;
 
-    protected $table = 'tb_pengeluaran';
+    protected $table = 'pengeluarans';
     protected $primaryKey = 'id_pengeluaran';
     public $incrementing = false;
     protected $keyType = 'string';

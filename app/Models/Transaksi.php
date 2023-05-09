@@ -39,8 +39,8 @@ class Transaksi extends Model
         return $this->belongsTo(Penyewa::class, 'no_paspor', 'no_paspor');
     }
 
-    public function pegawai()
+    public function user()
     {
-        return $this->belongsTo(Pegawai::class, 'id_pegawai', 'id_pegawai');
+        return $this->belongsTo(User::class, 'id_pegawai', 'id');
     }
 }

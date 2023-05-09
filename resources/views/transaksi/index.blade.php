@@ -76,7 +76,7 @@
                 <p><strong>Kode Transaksi     : </strong>{{ $transaksi->kode_transaksi }}</p>
                 <p><strong>Nama Penyewa       : </strong>{{ $transaksi->penyewa->nama_penyewa }} ( {{ $transaksi->no_paspor }} )</p>
                 <p><strong>Motor yang di sewa : </strong>{{ $transaksi->motor->nama_motor }} {{ $transaksi->plat_motor }}</p>
-                <p><strong>Operator/Pegawai   : </strong>{{ $transaksi->pegawai->nama_pegawai }} {{ $transaksi->id_pegawai }}</p>
+                <p><strong>Operator/Pegawai   : </strong>{{ $transaksi->user->nama_pegawai }} </p>
                 <p><strong>Tanggal mulai      : </strong>{{ $transaksi->tgl_mulai }}</p>
                 <p><strong>Tanggal selesai    : </strong>{{ $transaksi->tgl_selesai }}</p>
                 <p><strong>Total harga sewa   : </strong>Rp.{{ number_format($transaksi->total, 0, ',', '.') }} km.</p>

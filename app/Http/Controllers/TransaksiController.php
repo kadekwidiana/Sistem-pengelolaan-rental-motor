@@ -7,12 +7,13 @@ use App\Models\Transaksi;
 use App\Models\Motor;
 use App\Models\Pegawai;
 use App\Models\Penyewa;
+use App\Models\User;
 
 class TransaksiController extends Controller
 {
     public function index()
     {
-        $transaksis = Transaksi::with('motor', 'penyewa', 'pegawai')->get();
+        $transaksis = Transaksi::with('motor', 'penyewa', 'user')->get();
         return view('transaksi.index', [
             'title' => 'Data Transaksi',
             'active' => 'Transaksi'
@@ -24,11 +25,11 @@ class TransaksiController extends Controller
         $transaksi = new Transaksi();
         $motors = Motor::all();
         // $penyewas = Penyewa::all();
-        $pegawais = Pegawai::all();
+        $users = User::all();
         return view('transaksi.create', [
             'title' => 'Tambah Transaksi',
             'active' => 'Transaksi',
-        ], compact('transaksi', 'motors', 'pegawais'));
+        ], compact('transaksi', 'motors', 'users'));
     }
 
     public function store(Request $request)
@@ -96,7 +97,7 @@ class TransaksiController extends Controller
 
     public function show($kode_transaksi)
     {
-        $transaksi = Transaksi::with('motor', 'penyewa', 'pegawai')->where('kode_transaksi', $kode_transaksi)->first();
+        $transaksi = Transaksi::with('motor', 'penyewa', 'user')->where('kode_transaksi', $kode_transaksi)->first();
         return view('transaksi.show', [
             'title' => 'Detail Transaksi',
             'active' => 'Transaksi'
@@ -108,11 +109,11 @@ class TransaksiController extends Controller
     {
         $motors = Motor::all();
         $penyewas = Penyewa::all();
-        $pegawais = Pegawai::all();
+        $users = User::all();
         return view('transaksi.tambah', [
             'title' => 'Tambah Transaksi',
             'active' => 'Transaksi'
-        ], compact('motors', 'penyewas', 'pegawais'));
+        ], compact('motors', 'penyewas', 'users'));
     }
 
     // mengolah tambah data penyewa yang sudah ada
@@ -228,26 +229,26 @@ class TransaksiController extends Controller
     // menampilkan view pengembalian
     public function pengembalianForm($kode_transaksi)
     {
-        $transaksi = Transaksi::with('motor', 'penyewa')->where('kode_transaksi', $kode_transaksi)->first();
+        $transaksi = Transaksi::with('motor', 'penyewa', 'user')->where('kode_transaksi', $kode_transaksi)->first();
         $motors = Motor::all();
         $penyewas = Penyewa::all();
-        $pegawais = Pegawai::all();
+        $users = User::all();
         return view('transaksi.pengembalian', [
             'title' => 'Pengembalian',
             'active' => 'Transaksi'
-        ], compact('transaksi', 'motors', 'penyewas', 'pegawais'));
+        ], compact('transaksi', 'motors', 'penyewas', 'users'));
     }
 
     public function edit($kode_transaksi)
     {
-        $transaksi = Transaksi::with('motor', 'penyewa', 'pegawai')->where('kode_transaksi', $kode_transaksi)->first();
+        $transaksi = Transaksi::with('motor', 'penyewa', 'user')->where('kode_transaksi', $kode_transaksi)->first();
         $motors = Motor::all();
         $penyewas = Penyewa::all();
-        $pegawais = Pegawai::all();
+        $users = User::all();
         return view('transaksi.edit', [
             'title' => 'Edit Transaksi',
             'active' => 'Transaksi'
-        ], compact('transaksi', 'motors', 'penyewas', 'pegawais'));
+        ], compact('transaksi', 'motors', 'penyewas', 'users'));
     }
 
     public function update(Request $request, $kode_transaksi)

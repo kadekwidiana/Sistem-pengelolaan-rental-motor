@@ -33,6 +33,10 @@
                                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                             </div>
                         @endif
+                        @if (session()->has('loginSuccess'))
+                            @include('includes.popup-login-success')
+                        @endif
+                        
                         @yield('content')
                     </div>
                 </main>

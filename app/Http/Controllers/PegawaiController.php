@@ -13,15 +13,15 @@ class PegawaiController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        $pegawais = Pegawai::all();
+    // public function index()
+    // {
+    //     $pegawais = Pegawai::all();
 
-        return view('pegawai.index', [
-            'title' => 'Operator & Pegawai',
-            'active' => 'Pegawai'
-        ], compact('pegawais'));
-    }
+    //     return view('pegawai.index', [
+    //         'title' => 'Operator & Pegawai',
+    //         'active' => 'Pegawai'
+    //     ], compact('pegawais'));
+    // }
 
     /**
      * Show the form for creating a new resource.
