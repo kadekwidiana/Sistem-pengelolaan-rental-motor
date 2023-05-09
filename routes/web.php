@@ -45,7 +45,7 @@ Route::post('/profile', [ProfileController::class, 'change_profile'])->middlewar
 Route::get('/change-password', [ProfileController::class, 'password'])->middleware(['auth'])->name('change-password');
 Route::post('/change-password', [ProfileController::class, 'change_password'])->middleware(['auth'])->name('change-password.change');
 
-require __DIR__ . '/auth.php';
+require _DIR_ . '/auth.php';
 
 
 // AUTH

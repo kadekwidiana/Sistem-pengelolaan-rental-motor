@@ -27,6 +27,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/icomoon.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/style.css') }}">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
+
   </head>
   <body>
     @include('frontpage.layouts.navbar')

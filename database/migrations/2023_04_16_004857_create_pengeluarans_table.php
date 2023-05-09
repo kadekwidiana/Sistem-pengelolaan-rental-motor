@@ -19,7 +19,7 @@ return new class extends Migration
             // $table->string('id_pegawai');
             $table->foreignId('id_pegawai')->references('id')->on('users');
             $table->date('tgl_pengeluaran');
-            $table->string('jenis_pengeluaran', 20);
+            $table->string('jenis_pengeluaran');
             $table->string('biaya_pengeluaran', 10);
             $table->timestamps();
 

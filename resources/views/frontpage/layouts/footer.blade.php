@@ -18,6 +18,7 @@
             <ul class="list-unstyled">
               <li><a href="" class="py-2 d-block">About</a></li>
               <li><a href="" class="py-2 d-block">Contact</a></li>
+
             </ul>
           </div>
         </div>
@@ -36,14 +37,22 @@
               <ul>
                 <li><span class="icon icon-map-marker"></span><span class="text">Jl.Tirta Tawar 108, Br.Kutuh Kaja, Ubud, Gianyar, Bali-Indonesia</span></li>
                 <li><a href="#"><span class="icon icon-phone"></span><span class="text">087 760 606 090</span></a></li>
+
                 <li><a href="#"><span class="icon icon-envelope"></span><span class="text">damarmotorbikerental@gmail.com</span></a></li>
-                
+  
               </ul>
             </div>
           </div>
         </div>
       </div>
-      
+      <div class="row">
+        <div class="col-md-12 text-center">
+
+          <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+          Copyright &copy;<script>document.write(new Date().getFullYear());</script> Damar Motor Bike Rental <i class="icon-heart color-danger" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Trio Karangasem</a>
+          <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+        </div>
+      </div>
     </div>
 </footer>
  <!-- loader -->

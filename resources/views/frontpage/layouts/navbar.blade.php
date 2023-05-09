@@ -9,6 +9,7 @@
         <ul class="navbar-nav ml-auto">
           <li class="nav-item {{ ($active === "Home") ? 'active' : '' }}"><a href="/" class="nav-link ">Home</a></li>
           <li class="nav-item {{ ($active === "About") ? 'active' : '' }}"><a href="/about" class="nav-link">About</a></li>
+
           <li class="nav-item {{ ($active === "Motor") ? 'active' : '' }}"><a href="/view-motor" class="nav-link">Motorcyle</a></li>
           <li class="nav-item {{ ($active === "Contact") ? 'active' : '' }}"><a href="/contak" class="nav-link">Contact</a></li>
           <li class="nav-item {{ ($active === "Login") ? 'active' : '' }}">
