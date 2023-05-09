@@ -2,24 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Motor;
-use App\Models\Transaksi;
 use Illuminate\Http\Request;
+use App\Models\Motor;
 use Illuminate\Support\Facades\Storage;
 
-use Symfony\Component\Console\Input\Input;
-
-class MotorController extends Controller
+class Motor2Controller extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
         $motors = Motor::all();
-        return view('motor.index', [
+        return view('motors.index', [
             'title' => 'Data Motor',
             'active' => 'Motor'
         ], compact('motors'));
@@ -32,11 +29,12 @@ class MotorController extends Controller
      */
     public function create()
     {
-        return view('motor.create', [
-            'title' => 'Tambah Data Motor',
+        return view('motors.create', [
+            'title' => 'Data Motor',
             'active' => 'Motor'
         ]);
     }
+
 
     /**
      * Store a newly created resource in storage.
@@ -46,11 +44,11 @@ class MotorController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->validate([
+        $validatedData = $request->validate([
             'plat_motor' => 'required|string|max:10|unique:motors',
             'nama_motor' => 'required|string|max:20',
             'warna' => 'required|in:merah,kuning,hijau,biru,hitam,putih',
-            'tipe' => 'required',
+            'tipe' => 'required|in:yamaha,honda,suzuki',
             'tahun' => 'required|numeric|digits:4',
             'tgl_pajak' => 'required|date',
             'nama_pemilik' => 'required|string|max:100',
@@ -62,12 +60,11 @@ class MotorController extends Controller
         ]);
 
         if ($request->file('gambar_motor')) {
-            $data['gambar_motor'] = $request->file('gambar_motor')->store('motors-image');
+            $vallidatedData['gambar_motor'] = $request->file('gambar_motor')->store('motors-image');
         }
 
-        Motor::create($data);
-
-        return redirect()->route('motor.index')->with('success', 'Data berhasil ditambahkan');
+        Motor::create($validatedData);
+        return redirect()->route('motors.index')->with('success', 'Motor created successfully.');
     }
 
     /**
@@ -76,9 +73,14 @@ class MotorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($plat_motor)
     {
-        //
+        $motor = Motor::findOrFail($plat_motor);
+        return view('motors.show', [
+            'title' => 'Data Motor',
+            'active' => 'Motor',
+            'motor' => $motor
+        ]);
     }
 
     /**
@@ -91,7 +93,7 @@ class MotorController extends Controller
     {
         $motor = Motor::findOrFail($plat_motor);
         return view(
-            'motor.edit',
+            'motors.edit',
             [
                 'title' => 'Data Motor',
                 'active' => 'Motor'
@@ -120,22 +122,42 @@ class MotorController extends Controller
             'cc' => 'required|numeric|digits:3',
             'harga_sewa' => 'required|string|max:10',
             'status' => 'required|numeric|digits:1',
-            // 'gambar_motor' => 'required',
+            'gambar_motor' => 'required',
             'tgl_catat' => 'required|date'
         ]);
-
-        if ($request->file('gambar_motor')) {
-            if ($request->oldImage) {
-                Storage::delete($request->oldImage);
-            }
-            $validatedData['gambar_motor'] = $request->file('gambar_motor')->store('motors-image');
-        }
 
         $motor = Motor::findOrFail($plat_motor);
         $motor->update($validatedData);
 
-        return redirect()->route('motor.index')->with('success', 'Motor updated successfully.');
+        return redirect()->route('motors.index')->with('success', 'Motor updated successfully.');
     }
+    //     public function edit($plat_motor)
+    // {
+    //     $motor = Motor::findOrFail($plat_motor);
+    //     return view('motors.edit', compact('motor'));
+    // }
+
+    // public function update(Request $request, $plat_motor)
+    // {
+    //     $motor = Motor::findOrFail($plat_motor);
+
+    //     $motor->nama_motor = $request->input('nama_motor');
+    //     $motor->warna = $request->input('warna');
+    //     $motor->tipe = $request->input('tipe');
+    //     $motor->tahun = $request->input('tahun');
+    //     $motor->tgl_pajak = $request->input('tgl_pajak');
+    //     $motor->nama_pemilik = $request->input('nama_pemilik');
+    //     $motor->cc = $request->input('cc');
+    //     $motor->harga_sewa = $request->input('harga_sewa');
+    //     $motor->status = $request->input('status');
+    //     $motor->gambar_motor = $request->input('gambar_motor');
+    //     $motor->tgl_catat = $request->input('tgl_catat');
+
+    //     $motor->save();
+
+    //     // return redirect()->route('motors.show', $plat_motor)->with('success', 'Motor updated successfully.');
+    //     return redirect()->route('motors.index')->with('success', 'Motor updated successfully.');
+    // }
 
     /**
      * Remove the specified resource from storage.
@@ -146,21 +168,8 @@ class MotorController extends Controller
     public function destroy($plat_motor)
     {
         $motor = Motor::findOrFail($plat_motor);
-
-        // Menghapus transaksi jika data motor yang ingin di hapus ada di transaksi
-        $transaksi = Transaksi::where('plat_motor', $plat_motor)->first(); // mencari data transaksi berdasarkan plat_motor
-        if ($transaksi) {
-            $transaksi->delete();
-
-            $transaksi->delete(); // menghapus data transaksi
-        }
-
-
-        if ($motor->gambar_motor) {
-            Storage::delete($motor->gambar_motor);
-        }
         $motor->delete();
 
-        return redirect()->route('motor.index')->with('success', 'Motor deleted successfully.');
+        return redirect()->route('motors.index')->with('success', 'Motor deleted successfully.');
     }
 }

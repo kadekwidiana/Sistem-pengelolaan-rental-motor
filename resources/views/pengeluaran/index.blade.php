@@ -24,7 +24,7 @@
                 <table class="table table-bordered text-center">
                 <tr>
             <th>ID Pengeluaran</th>
-            <th>Plat Motor</th>
+            <th>Motor</th>
             <th>ID Pegawai</th>
             <th>Tanggal Pengeluaran</th>
             <th>Jenis Pengeluaran</th>
@@ -38,18 +38,18 @@
                 <td>{{ $pengeluaran->id_pengeluaran }}</td>
                 <td>{{ $pengeluaran->plat_motor }}</td>
                 <td>{{ $pengeluaran->id_pegawai }}</td>
-                <td>{{ $pengeluaran->tgl_pengeluaran }}</td>
+                <td>{{ date('d F Y', strtotime($pengeluaran->tgl_pengeluaran)) }}</td>
                 <td>{{ $pengeluaran->jenis_pengeluaran }}</td>
-                <td>{{ $pengeluaran->biaya_pengeluaran }}</td>
+                <td>{{ number_format($pengeluaran->biaya_pengeluaran, 0, ',', '.') }}</td>
                 <td>
                   <div class="d-flex justify-content-center align-items-center">
                     <a class="btn btn-sm btn-info me-2" data-bs-toggle="modal" data-bs-target="#{{ $pengeluaran->id_pengeluaran }}">
                         Detail
                     </a>
-                  <a href="{{ route('pengeluarans.edit', $pengeluaran->id_pengeluaran) }}" class="btn btn-sm btn-success me-2" title="Edit">
+                  <a href="{{ route('pengeluaran.edit', $pengeluaran->id_pengeluaran) }}" class="btn btn-sm btn-success me-2" title="Edit">
                     Edit
                 </a>
-                <form action="{{ route('pengeluarans.destroy', $pengeluaran->id_pengeluaran) }}" method="POST" class="d-inline">
+                <form action="{{ route('pengeluaran.destroy', $pengeluaran->id_pengeluaran) }}" method="POST" class="d-inline">
                     @csrf
                     @method('DELETE')
                     <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Apakah Anda yakin ingin menghapus motor ini?')" title="Hapus">
@@ -66,11 +66,11 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   </div>
                   <div class="modal-body">
-                    <p><strong>Id Pengeluaran: </strong>{{ $pengeluaran->id_pengeluaran }}</p>
-                    <p><strong>Plat Motor: </strong>{{ $pengeluaran->plat_motor }}</p>
-                    <p><strong>Tanggal Pengeluaran: </strong>{{ $pengeluaran->tgl_pengeluaran }}</p>
-                    <p><strong>Jenis Pengeluaran: </strong>{{ $pengeluaran->jenis_pengeluaran }}</p>
-                    <p><strong>Biaya Pengeluaran: </strong>{{ $pengeluaran->biaya_pengeluaran }}</p>
+                    <p><strong>Id Pengeluaran : </strong>{{ $pengeluaran->id_pengeluaran }}</p>
+                    <p><strong>Plat Motor : </strong>{{ $pengeluaran->plat_motor }}</p>
+                    <p><strong>Tanggal Pengeluaran : </strong>{{ date('d F Y', strtotime($pengeluaran->tgl_pengeluaran)) }}</p>
+                    <p><strong>Jenis Pengeluaran : </strong>{{ $pengeluaran->jenis_pengeluaran }}</p>
+                    <p><strong>Biaya Pengeluaran : </strong>Rp. {{ number_format($pengeluaran->biaya_pengeluaran, 0, ',', '.') }}</p>
                   </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -81,5 +81,6 @@
         @endforeach
     </tbody>
 </table>
+<p><strong>Total Pengeluaran : </strong>Rp. {{ number_format($totalPengeluaran, 0, ',', '.') }}</p>
 </div>
 @endsection

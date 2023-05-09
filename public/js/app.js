@@ -642,6 +642,7 @@ var require_reactivity_cjs = __commonJS((exports) => {
     const method = Array.prototype[key];
     arrayInstrumentations[key] = function(...args) {
       const arr = toRaw2(this);
+      for (let i = 0, l = this.length; i < l; i++) {$totalPengeluaran
       for (let i = 0, l = this.length; i < l; i++) {
         track(arr, "get", i + "");
       }

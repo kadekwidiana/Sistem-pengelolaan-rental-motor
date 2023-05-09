@@ -17,7 +17,10 @@ class AuthenticatedSessionController extends Controller
      */
     public function create(): View
     {
-        return view('auth.login');
+        return view('auth.login', [
+            'title' => 'Login',
+            'active' => 'Login'
+        ]);
     }
 
     /**
@@ -29,7 +32,7 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->intended(RouteServiceProvider::HOME);
+        return redirect()->intended(RouteServiceProvider::HOME)->with('loginSuccess', 'Anda berhasil login');
     }
 
     /**

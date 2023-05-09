@@ -4,13 +4,15 @@ Chart.defaults.global.defaultFontColor = '#292b2c';
 
 // Pie Chart Example
 var ctx = document.getElementById("myPieChart");
+var totalPendapatan = document.getElementById('totalPendapatan').innerHTML;
+var totalPengeluaran = document.getElementById('totalPengeluaran').innerHTML;
 var myPieChart = new Chart(ctx, {
   type: 'pie',
   data: {
-    labels: ["Blue", "Red", "Yellow", "Green"],
+    labels: ["Pendapatan ", "Pengeluaran ", ],
     datasets: [{
-      data: [12.21, 15.58, 11.25, 8.32],
-      backgroundColor: ['#007bff', '#dc3545', '#ffc107', '#28a745'],
+      data: [  totalPendapatan, totalPengeluaran,],
+      backgroundColor: [  '#28a745', '#dc3545',],
     }],
   },
 });

@@ -19,12 +19,11 @@
                     </select>
                 </div>
                 <div class="form-group mt-2">
-                    <label for="id_pegawai">ID Pegawai</label>
-                    <select class="form-control @error('id_pegawai') is-invalid @enderror" id="id_pegawai" name="id_pegawai" required>
-                        <option value="">Pilih ID Pegawai</option>
-                        @foreach($pegawais as $pegawai)
-                            <option value="{{ $pegawai->id_pegawai }}" @if(old('id_pegawai') == $pegawai->id_pegawai) selected @endif>{{ $pegawai->id_pegawai }} - {{ $pegawai->nama_pegawai }}</option>
-                        @endforeach
+                    <label for="id_pegawai">Operator/Pegawai</label>
+                    <select name="id_pegawai" id="id_pegawai" class="form-control @error('id_pegawai') is-invalid @enderror">
+                            <option value="{{ Auth::user()->id }}">@if (Auth::check())
+                                {{ Auth::user()->nama_pegawai }}
+                            @endif</option>
                     </select>
                     @error('id_pegawai')
                         <div class="invalid-feedback">{{ $message }}</div>
@@ -49,7 +48,10 @@
 
                 <div class="form-group mt-2">
                     <label for="biaya_pengeluaran">Biaya Pengeluaran</label>
-                    <input type="number" class="form-control @error('biaya_pengeluaran') is-invalid @enderror" id="biaya_pengeluaran" name="biaya_pengeluaran" value="{{ old('biaya_pengeluaran') }}" placeholder="Masukkan Biaya Pengeluaran" required>
+                    <div class="input-group">
+                        <span class="input-group-text">Rp.</span>
+                        <input type="number" class="form-control @error('biaya_pengeluaran') is-invalid @enderror" id="biaya_pengeluaran" name="biaya_pengeluaran" value="{{ old('biaya_pengeluaran') }}" placeholder="Masukkan Biaya Pengeluaran" required>
+                    </div>
                     @error('biaya_pengeluaran')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror

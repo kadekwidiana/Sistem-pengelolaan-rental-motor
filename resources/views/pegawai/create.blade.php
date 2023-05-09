@@ -5,13 +5,7 @@
     <form method="POST" action="{{ route('pegawai.store') }}">
         @csrf
         <div class="border p-3 rounded">
-            <div class="form-group mt-2">
-                <label label for="id_pegawai">{{ __('Id Pegawai') }}</label>
-                <input type="text" class="form-control id_pegawai @error('id_pegawai') is-invalid @enderror" id="id_pegawai" name="id_pegawai" value="{{ old('id_pegawai') }}" placeholder="Masukan Id Pegawai" required>
-                @error('id_pegawai')
-                    <div class="invalid-feedback">{{ $message }}</div>
-                @enderror
-            </div>
+            
             <div class="form-group">
                 <label for="nama_pegawai">{{ __('Nama Pegawai') }}</label>
                 <input id="nama_pegawai" type="text" class="form-control @error('nama_pagawai') is-invalid @enderror" name="nama_pegawai" value="{{ old('nama_pegawai') }}" placeholder="Masukan Nama Pegawai" autofocus >
@@ -71,17 +65,18 @@
                 <label for="">Pilih Jenis Kelamin</label>
                     <div>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="jenis_kelamin" id="laki-laki" value="L">
+                        <input class="form-check-input" type="radio" name="jenis_kelamin" id="laki-laki" value="Laki-laki">
                         <label class="form-check-label" for="laki-laki">
                             Laki-laki
                         </label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input id="form-check-input" type="radio" name="jenis_kelamin" id="perempuan" value="P">
-                        <label class="form-check-label" for="perempuan">
+                        <input class="form-check-input" type="radio" name="jenis_kelamin" id="laki-laki" value="Perempuan">
+                        <label class="form-check-label" for="laki-laki">
                             Perempuan
                         </label>
                     </div>
+                    
                 </div>
                     @error('jenis_kelamin')
                         <span class="invalid-feedback" role="alert">
@@ -89,16 +84,31 @@
                         </span>
                     @enderror
             </div>
+
             <div class="form-group">
+                <label for="is_admin">Posisi</label>
+                    <select id="is_admin" name="is_admin" class="form-control @error('is_admin') is-invalid @enderror" required>
+                        {{-- <option value="3" {{ old('is_admin') == 1 ? 'selected' : '' }}>Owner/Pemilik</option> --}}
+                        <option value="">--Pilih posisi--</option>
+                        <option value="2" {{ old('is_admin') == 2 ? 'selected' : '' }}>Manager</option>
+                        <option value="1" {{ old('is_admin') == 1 ? 'selected' : '' }}>Operator</option>
+                    </select>
+
+                    @error('is_admin')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                        @enderror
+            </div>
+            <div class="form-group mt-3">
                 <button type="submit" class="btn btn-primary">
                     {{ __('Tambah') }}
                 </button>
-                <a href="{{ route('pegawai.index') }}" class="btn btn-danger">
+                <a href="/pegawai" class="btn btn-danger">
                     {{ __('Batal') }}
                 </a>
             </div>
     </form>
-    </div>
 </div>
 @endsection
 

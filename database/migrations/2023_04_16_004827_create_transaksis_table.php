@@ -19,8 +19,8 @@ return new class extends Migration
             $table->foreign('plat_motor')->references('plat_motor')->on('motors');
             $table->string('no_paspor', 15);
             $table->foreign('no_paspor')->references('no_paspor')->on('penyewas');
-            $table->string('id_pegawai', 15);
-            $table->foreign('id_pegawai')->references('id_pegawai')->on('pegawais');
+            // $table->string('id_pegawai', 15);
+            $table->foreignId('id_pegawai')->references('id')->on('users');
             $table->date('tgl_mulai');
             $table->date('tgl_selesai');
             $table->integer('total');

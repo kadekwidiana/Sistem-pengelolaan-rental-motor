@@ -116,12 +116,11 @@
             </div>
         </div>
         
+
         <div class="form-group mt-2">
             <label for="id_pegawai">Operator/Pegawai</label>
             <select name="id_pegawai" id="id_pegawai" class="form-control @error('id_pegawai') is-invalid @enderror">
-                @foreach ($pegawais as $pegawai)
-                    <option value="{{ $pegawai->id_pegawai }}">{{ $pegawai->nama_pegawai }} ({{ $pegawai->id_pegawai }})</option>
-                @endforeach
+                    <option value="{{ $transaksi->id_pegawai }}">{{ $transaksi->user->nama_pegawai }} </option>
             </select>
             @error('id_pegawai')
                 <div class="invalid-feedback">{{ $message }}</div>

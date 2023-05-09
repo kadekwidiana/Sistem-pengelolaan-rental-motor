@@ -118,6 +118,7 @@
                     <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
             </div>
+            
             <div class="col-md-6">
                 <label for="harga_sewa">Harga Sewa</label>
                 <div class="input-group">
@@ -130,9 +131,9 @@
         <div class="form-group mt-2">
             <label for="id_pegawai">Operator/Pegawai</label>
             <select name="id_pegawai" id="id_pegawai" class="form-control @error('id_pegawai') is-invalid @enderror">
-                @foreach ($pegawais as $pegawai)
-                    <option value="{{ $pegawai->id_pegawai }}">{{ $pegawai->nama_pegawai }} ({{ $pegawai->id_pegawai }})</option>
-                @endforeach
+                    <option value="{{ Auth::user()->id }}">@if (Auth::check())
+                        {{ Auth::user()->nama_pegawai }}
+                    @endif</option>
             </select>
             @error('id_pegawai')
                 <div class="invalid-feedback">{{ $message }}</div>
@@ -231,15 +232,15 @@
 
 <script>
     // MENENTUKAN HARGA SEWA SESUAI DENGAN MOTOR YANG DI PILIH PADA SELECT.
-    let plat_motor = document.getElementById("plat_motor");
-    // tambahkan event listener untuk menangkap perubahan pada pilihan plat_motor
-    plat_motor.addEventListener("change", function() {
-        // ambil nilai harga_sewa yang terkait dengan pilihan plat_motor yang dipilih
-        let selected_option = plat_motor.options[plat_motor.selectedIndex];
-        let harga_sewa = selected_option.getAttribute("data-harga");
-        // set nilai harga_sewa input menjadi nilai yang terkait dengan pilihan plat_motor yang dipilih
-        document.getElementById("harga_sewa").value = harga_sewa;
-    });
+    // let plat_motor = document.getElementById("plat_motor");
+    // // tambahkan event listener untuk menangkap perubahan pada pilihan plat_motor
+    // plat_motor.addEventListener("change", function() {
+    //     // ambil nilai harga_sewa yang terkait dengan pilihan plat_motor yang dipilih
+    //     let selected_option = plat_motor.options[plat_motor.selectedIndex];
+    //     let harga_sewa = selected_option.getAttribute("data-harga");
+    //     // set nilai harga_sewa input menjadi nilai yang terkait dengan pilihan plat_motor yang dipilih
+    //     document.getElementById("harga_sewa").value = harga_sewa;
+    // });
 
     // NO PASPOR OTOMATIS PADA TRANSAKSI, SESUAI DENGAN NO PASPOR PENYEWA.
     let noPaspor = document.getElementById('no_paspor_input');

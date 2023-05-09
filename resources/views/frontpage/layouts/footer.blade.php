@@ -16,8 +16,9 @@
           <div class="ftco-footer-widget mb-4 ml-md-5">
             <h2 class="ftco-heading-2">Information</h2>
             <ul class="list-unstyled">
-              <li><a href="{{ route('about')}}" class="py-2 d-block">About</a></li>
-              <li><a href="{{ route('contak')}}" class="py-2 d-block">Contact</a></li>
+              <li><a href="" class="py-2 d-block">About</a></li>
+              <li><a href="" class="py-2 d-block">Contact</a></li>
+
             </ul>
           </div>
         </div>
@@ -25,7 +26,7 @@
           <div class="ftco-footer-widget mb-4">
             <h2 class="ftco-heading-2">Customer Support</h2>
             <ul class="list-unstyled">
-              <li><a href="{{ route('contak')}}" class="py-2 d-block">Contact</a></li>
+              <li><a href="" class="py-2 d-block">Contact</a></li>
             </ul>
           </div>
         </div>
@@ -36,7 +37,9 @@
               <ul>
                 <li><span class="icon icon-map-marker"></span><span class="text">Jl.Tirta Tawar 108, Br.Kutuh Kaja, Ubud, Gianyar, Bali-Indonesia</span></li>
                 <li><a href="#"><span class="icon icon-phone"></span><span class="text">087 760 606 090</span></a></li>
-                <li><a href="#"><span class="icon icon-envelope"></span><span class="text"> damarmotorbikerental@gmail.com</span></a></li>
+
+                <li><a href="#"><span class="icon icon-envelope"></span><span class="text">damarmotorbikerental@gmail.com</span></a></li>
+  
               </ul>
             </div>
           </div>

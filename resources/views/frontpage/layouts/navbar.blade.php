@@ -9,17 +9,29 @@
         <ul class="navbar-nav ml-auto">
           <li class="nav-item {{ ($active === "Home") ? 'active' : '' }}"><a href="/" class="nav-link ">Home</a></li>
           <li class="nav-item {{ ($active === "About") ? 'active' : '' }}"><a href="/about" class="nav-link">About</a></li>
-          <li class="nav-item {{ ($active === "Motors") ? 'active' : '' }}"><a href="/motor" class="nav-link">Motorcyle</a></li>
+
+          <li class="nav-item {{ ($active === "Motor") ? 'active' : '' }}"><a href="/view-motor" class="nav-link">Motorcyle</a></li>
           <li class="nav-item {{ ($active === "Contact") ? 'active' : '' }}"><a href="/contak" class="nav-link">Contact</a></li>
-            <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Admin<i class="fas fa-user fa-fw"></i></a>
+          <li class="nav-item {{ ($active === "Login") ? 'active' : '' }}">
+            <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">@if (Auth::check())
+              {{ Auth::user()->nama_pegawai }}
+          @endif<i class="fas fa-user fa-fw"></i></a>
               <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                   <li>
-                      {{-- <form>
-                          <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline"><center>Login</center></a>
-                      </form> --}}
+                      @if (Route::has('login'))
+                        
+                            @auth
+                                <a href="{{ url('/dashboard') }}" class="text-sm text-gray-700 dark:text-gray-500 underline"><center>Dashboard</center></a>
+                            @else
+                            <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline"><center>Login</center></a>
+                            @endauth
+                        
+                    @endif
                   </li>
               </ul>
           </a>
+          </li>
+            
         </ul>
       </div>
     </div>
