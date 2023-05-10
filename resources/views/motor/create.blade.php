@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="align-content-end mb-4">
-        <form method="POST" action="{{ route('motor.store') }}" enctype="multipart/form-data">
+        <form method="POST" action="{{ route('motor.store') }}" enctype="multipart/form-data" autocomplete="off">
             @csrf
             <div class="border p-3 rounded">
                 <div class="form-group mt-2">

@@ -60,7 +60,7 @@
             </td>
 
             <td>
-              <button type="button" class="btn btn-info btn-sm mt-1" data-bs-toggle="modal" data-bs-target="#{{ $pegawai->id }}">
+              <button type="button" class="btn btn-info btn-sm mt-1" data-bs-toggle="modal" data-bs-target="#{{ $pegawai->username }}">
                   Detail
                 </button>
                 @if ($pegawai->is_admin !== 3)
@@ -90,6 +90,44 @@
                 @endcan
             </td>
         </tr>
+
+        <div class="modal fade" id="{{ $pegawai->username }}" tabindex="-1" aria-labelledby="{{ $pegawai->username }}Label" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Detail Pegawai</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <p><strong>Nama Pegawai : </strong>{{ $pegawai->nama_pegawai }}</p>
+                <p><strong>Alamat : </strong>{{ $pegawai->alamat }}</p>
+                <p><strong>Tanggal Lahir : </strong>{{ date('d F Y', strtotime($pegawai->tgl_lahir)) }}</p>
+                <p><strong>Jenis Kelamin : </strong>{{ $pegawai->jenis_kelamin }}</p>
+                <p><strong>Username : </strong>{{ $pegawai->username }}</p>
+                <p><strong>Email : </strong>{{ $pegawai->email }}</p>
+                <p><strong>Posisi : </strong>
+                  @if ($pegawai->is_admin == 3)
+                    <span>Owner/Pemilik</span>
+                  @elseif($pegawai->is_admin == 2)
+                    <span>Manajer</span>
+                  @else
+                    <span>Operator</span>
+                  @endif
+                </p>
+                <p><strong>Status : </strong>
+                  @if ($pegawai->status == 1)
+                    <span class="badge bg-success">Aktif</span>
+                  @else
+                    <span class="badge bg-danger">Tidak Aktif</span>
+                  @endif
+                </p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
         @endforeach
     </tbody>
   </table>

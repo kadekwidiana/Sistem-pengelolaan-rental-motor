@@ -30,6 +30,6 @@ class Pengeluaran extends Model
 
     public function pegawai()
     {
-        return $this->belongsTo(Pegawai::class, 'id_pegawai', 'id_pegawai');
+        return $this->belongsTo(User::class, 'id_pegawai', 'id');
     }
 }

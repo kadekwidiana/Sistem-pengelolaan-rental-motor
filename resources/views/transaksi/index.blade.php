@@ -93,6 +93,7 @@
         @endforeach
     </tbody>
   </table>
+  <p><strong>Total Transaksi : </strong>Rp. {{ number_format($totalTransaksi, 0, ',', '.') }}</p>
   @empty($transaksi)
     <div class="text-center" style="font-weight: bold">
       <h5 style="font-weight: bold">Data Transaksi belum ada</h5>

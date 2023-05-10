@@ -16,14 +16,14 @@ return new class extends Migration
         Schema::create('pengeluarans', function (Blueprint $table) {
             $table->string('id_pengeluaran', 15)->primary();
             $table->string('plat_motor', 15);
-            $table->string('id_pegawai', 15);
+            // $table->string('id_pegawai');
+            $table->foreignId('id_pegawai')->references('id')->on('users');
             $table->date('tgl_pengeluaran');
             $table->string('jenis_pengeluaran', 20);
             $table->string('biaya_pengeluaran', 10);
             $table->timestamps();
 
             $table->foreign('plat_motor')->references('plat_motor')->on('motors')->onDelete('cascade');
-            $table->foreign('id_pegawai')->references('id_pegawai')->on('pegawais')->onDelete('cascade');
         });
     }
 

@@ -11,12 +11,13 @@ class PengeluaranController extends Controller
 {
     public function index()
     {
+        $totalPengeluaran = Pengeluaran::sum('biaya_pengeluaran');
         $pengeluarans = Pengeluaran::all();
 
         return view('pengeluaran.index', [
             'title' => 'Pengeluaran',
             'active' => 'Motor'
-        ], compact('pengeluarans'));
+        ], compact('pengeluarans', 'totalPengeluaran'));
     }
 
     public function create()
@@ -27,9 +28,6 @@ class PengeluaranController extends Controller
             'title' => 'Data Pengeluaran',
             'active' => 'Motor',
         ], compact('motors', 'pegawais'));
-        // Tambahkan data plat motor baru ke variabel $motors
-        // $motors->push(['merk_motor' => 'Honda', 'plat_motor' => 'ABC 1234']);
-        // return view('pengeluaran.create', compact('motors'));
     }
 
     public function store(Request $request)
@@ -38,7 +36,7 @@ class PengeluaranController extends Controller
             'plat_motor' => 'required|string|max:15',
             'id_pegawai' => 'required|string|max:15',
             'tgl_pengeluaran' => 'required|date',
-            'jenis_pengeluaran' => 'required|string|max:20',
+            'jenis_pengeluaran' => 'required',
             'biaya_pengeluaran' => 'required|string|max:10',
         ]);
 
@@ -53,7 +51,7 @@ class PengeluaranController extends Controller
 
         $pengeluaran->save();
 
-        return redirect('/pengeluarans')->with('success', 'Pengeluaran berhasil ditambahkan!');
+        return redirect('/pengeluaran')->with('success', 'Data pengeluaran berhasil di buat.');
     }
 
     public function show($id_pengeluaran)
@@ -69,15 +67,12 @@ class PengeluaranController extends Controller
     public function edit($id_pengeluaran)
     {
         $motors = Motor::all();
-        $pegawais = User::all();
-        $pengeluarans = Pengeluaran::findOrFail($id_pengeluaran);
+        $pegawai = User::all();
+        $pengeluaran = Pengeluaran::findOrFail($id_pengeluaran);
         return view('pengeluaran.edit', [
             'title' => 'Data Pengeluaran',
             'active' => 'Motor',
-        ], compact('pengeluarans', 'motors', 'pegawais'));
-        // Tambahkan data plat motor baru ke variabel $motors
-        // $motors->push(['merk_motor' => 'Honda', 'plat_motor' => 'ABC 1234']);
-        // return view('pengeluaran.create', compact('motors'));
+        ], compact('pengeluaran', 'motors', 'pegawai'));
     }
 
     public function update(Request $request, $id)
@@ -98,13 +93,13 @@ class PengeluaranController extends Controller
         $pengeluaran->biaya_pengeluaran = $request->get('biaya_pengeluaran');
         $pengeluaran->save();
 
-        return redirect('/pengeluarans')->with('success', 'Pengeluaran berhasil diupdate!');
+        return redirect('/pengeluaran')->with('success', 'Data pengeluaran berhasil di update.');
     }
 
     public function destroy($id_pengeluaran)
     {
         $pengeluaran = Pengeluaran::find($id_pengeluaran);
         $pengeluaran->delete();
-        return redirect('/pengeluarans')->with('success', 'Pengeluaran berhasil dihapus!');
+        return redirect('/pengeluaran')->with('success', 'Data pengeluaran berhasil di hapus.');
     }
 }

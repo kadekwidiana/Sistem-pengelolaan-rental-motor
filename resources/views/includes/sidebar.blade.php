@@ -36,6 +36,13 @@
                         </a>
                     </nav>
                 </div>
+                <div class="collapse" id="collaps2" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
+                    <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
+                        <a class="nav-link collapsed {{ ($active === "Motor") ? 'active' : '' }}" href="/pengeluaran">
+                            Data Pengeluaran
+                        </a>
+                    </nav>
+                </div>
                 @endcan
                 
                 {{-- OWNER / PEMILIK --}}
@@ -69,6 +76,14 @@
                             </a>
                         </nav>
                     </div>
+                    <div class="collapse" id="collaps2" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
+                        <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
+                            <a class="nav-link collapsed {{ ($active === "Motor") ? 'active' : '' }}" href="/pengeluarans">
+                                Data Pengeluaran
+                            </a>
+                        </nav>
+                    </div>
+
                     <a class="nav-link collapsed {{ ($active === "Penyewa") ? 'active' : '' }}" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
                         <div class="sb-nav-link-icon "><i class="fas fa-users"></i></div>
                         Penyewa

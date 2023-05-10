@@ -13,11 +13,13 @@ class TransaksiController extends Controller
 {
     public function index()
     {
+        $totalTransaksi = Transaksi::sum('total');
+        
         $transaksis = Transaksi::with('motor', 'penyewa', 'user')->get();
         return view('transaksi.index', [
             'title' => 'Data Transaksi',
             'active' => 'Transaksi'
-        ], compact('transaksis'));
+        ], compact('transaksis', 'totalTransaksi'));
     }
 
     public function create()

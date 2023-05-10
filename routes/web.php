@@ -8,6 +8,7 @@ use App\Http\Controllers\PegawaiController;
 use App\Http\Controllers\PenyewaController;
 use App\Http\Controllers\PengeluaranController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\FrontPageController;
 use App\Http\Controllers\UserController;
 
 /*
@@ -21,9 +22,9 @@ use App\Http\Controllers\UserController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 // Route::get('/dashboard', function () {
 //     return view('dashboard');
@@ -60,14 +61,15 @@ Route::middleware('auth',)->group(function () {
         Route::get('/motors', [MotorController::class, 'index'])->name('motor.index');
         // Penyewa
         Route::resource('/penyewa', PenyewaController::class);
-
         // Pengeluaran
-        Route::resource('/pengeluaran', PengeluaranController::class);
+        Route::get('/pengeluarans', [PengeluaranController::class, 'index'])->name('pengeluaran.index');
     });
 
     // Auth Manajer mengelola motor
     Route::middleware('manajer')->group(function () {
         Route::resource('/motor', MotorController::class);
+        // Pengeluaran
+        Route::resource('/pengeluaran', PengeluaranController::class);
     });
 
     // Auth Owner & manajer kelola pegawai
@@ -82,3 +84,8 @@ Route::middleware('auth',)->group(function () {
     });
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
 });
+
+
+// Frontpage Rental Motor
+Route::get('/view-motor', [FrontPageController::class, 'viewMotor'])->name('frontpage.motors');
+Route::get('/', [FrontPageController::class, 'viewHome'])->name('frontpage.home');
